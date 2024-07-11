@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiIspitApp.Pages.HomePage"
+             Title="HomePage"
+             xmlns:vm="clr-namespace:MauiIspitApp.ViewModels"
+             xmlns:models="using:MauiIspitApp.Models"
+             Shell.NavBarIsVisible="False"
+             x:DataType="vm:HomePageViewModel"
+             xmlns:controls="clr-namespace:MauiIspitApp.Controls">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="H1">
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="Margin" Value="0,10"></Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="H2">
+                <Setter Property="FontSize" Value="22"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="Margin" Value="0,8"></Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="H3">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="Margin" Value="0,6"></Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="H4">
+                <Setter Property="FontSize" Value="18"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="Margin" Value="0, 4"></Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="H5">
+                <Setter Property="FontSize" Value="16"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="Margin" Value="0,2"></Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="H6">
+                <Setter Property="FontSize" Value="14"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="Margin" Value="0,1"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <VerticalStackLayout Padding="2">
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Hi,&#10;"
+                          TextColor="DarkGray"
+                          FontSize="14" />
+                    <Span Text="Abhay"
+                          TextColor="{StaticResource Primary}"
+                          FontSize="18"
+                          FontAttributes="Bold" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <controls:Spacer Space="15" />
+
+        <Label Text="Let's order some fresh fruits and vegetables for you" LineHeight="1.3" Opacity="0.8"
+               Style="{StaticResource H2}">
+        </Label>
+        <controls:Spacer Space="20" />
+        
+        <CollectionView ItemsSource="{Binding Offers}" HeightRequest="175">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Horizontal"
+                    ItemSpacing="15" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Offer">
+                    <Border StrokeShape="RoundRectangle 20"
+                            StrokeThickness="0" Background="Transparent" HeightRequest="180"
+                            WidthRequest="300">
+                        <Grid>
+                            <BoxView Color="{Binding BgColor}" Opacity="0.5" />
+                            <Grid RowDefinitions="Auto, *, Auto" Padding="15">
+                                <Label Grid.Row="0" Text="{Binding Title, StringFormat='{0} !!!'}"
+                                       Style="{StaticResource H3}" />
+                                <Label Grid.Row="1" Text="{Binding Description}" VerticalOptions="Center" />
+                                <Label Grid.Row="2" Text="{Binding Code}" Style="{StaticResource H4}"
+                                       HorizontalOptions="Center" BackgroundColor="{StaticResource Primary}"
+                                       TextColor="White" Padding="10, 5" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Text="Shop by Category" Style="{StaticResource H2}"></Label>
+
+        <controls:Spacer Space="5" />
+        <CollectionView ItemsSource="{Binding Categories}" HeightRequest="175">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="12"></LinearItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Category">
+                    <Border StrokeShape="RoundRectangle 8" StrokeThickness="0">
+                        <Grid>
+                            <Image Source="{Binding Image}"
+                                   Aspect="AspectFill"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   HeightRequest="175"
+                                   Width="150"
+                                   Opacity="0.9" />
+                            <Border StrokeShape="RoundRectangle 5" StrokeThickness="0" BackgroundColor="White"
+                                    VerticalOptions="End" Margin="5" Padding="10">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16"
+                                       HorizontalTextAlignment="Center" TextColor="{StaticResource Secondary}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Text="Popular" Style="{StaticResource H2}" />
+    </VerticalStackLayout>
+
+</ContentPage>

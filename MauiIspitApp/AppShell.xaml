@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiIspitApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiIspitApp"
+    Shell.FlyoutBehavior="Disabled"
+    Title="MauiIspitApp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:pages="clr-namespace:MauiIspitApp.Pages"
+    Shell.TabBarBackgroundColor="{StaticResource Secondary}"
+    Shell.TabBarTitleColor="{StaticResource Primary}"
+    Shell.BackgroundColor="{StaticResource Secondary}"
+    Shell.TabBarForegroundColor="{StaticResource White}"
+    >
+
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}"></toolkit:StatusBarBehavior>
+    </Shell.Behaviors>
+    
+    <!-- <ShellContent -->
+    <!--     Title="FruitVeg Basket" -->
+    <!--     ContentTemplate="{DataTemplate local:MainPage}" -->
+    <!--     Route="MainPage" /> -->
+
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            Icon="bsx_user.svg"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="HomePage"/>
+        <ShellContent
+            Title="Categories"
+            Icon="bxs_category.svg"
+            ContentTemplate="{DataTemplate pages:CategoriesPage}"
+            Route="CategoriesPage"/>
+        <ShellContent
+            Title="Cart"
+            Icon="bxs_list_ul"
+            ContentTemplate="{DataTemplate pages:BasketPage}"
+            Route="BasketPage"/>
+        <ShellContent
+            Title="Profile"
+            Icon="bxs_user"
+            ContentTemplate="{DataTemplate pages:ProfilePage}"
+            Route="ProfilePage"/>
+        <ShellContent
+            Title="Help"
+            Icon="bxs_help_circle"
+            ContentTemplate="{DataTemplate pages:HelpPage}"
+            Route="HelpPage"/>
+    </TabBar>
+    
+</Shell>
